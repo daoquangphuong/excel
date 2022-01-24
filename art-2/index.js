@@ -91,9 +91,9 @@ const main = async () => {
         if (!file.endsWith('.xlsx')) {
             return;
         }
-        if(file !== 'FOAMING LOSS MILLENNIUM -1.2021 0k.xlsx'){
-            return;
-        }
+        // if(file !== 'FOAMING LOSS MILLENNIUM -1.2021 0k.xlsx'){
+        //     return;
+        // }
         seq = seq.then(async () => {
             await processFile(file)
         })
