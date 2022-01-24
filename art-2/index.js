@@ -59,6 +59,7 @@ const processFile = async (filename) => {
     sheet.getCell('D1').value = 'FOAM TYPE'
     sheet.getCell('E1').value = 'KG'
     sheet.getCell('F1').value = 'MIN'
+    sheet.getCell('G1').value = 'KG*MIN'
 
     let l = 1;
     kgMinData.forEach((s) => {
@@ -75,7 +76,7 @@ const processFile = async (filename) => {
             }
             sheet.getCell(`E${l}`).value = {formula: `1*RIGHT(LEFT(FORMULATEXT(${sr}!E${i}),FIND("*",FORMULATEXT(${sr}!E${i}))-1),LEN(LEFT(FORMULATEXT(${sr}!E${i}),FIND("*",FORMULATEXT(${sr}!E${i}))-1))-1)`};
             sheet.getCell(`F${l}`).value = {formula: `1*RIGHT(FORMULATEXT(${sr}!E${i}),LEN(FORMULATEXT(${sr}!E${i}))-FIND("*",FORMULATEXT(${sr}!E${i})))`};
-            // sheet.getCell(`G${l}`).value = {formula: `FORMULATEXT(${sr}!E${i})`};
+            sheet.getCell(`G${l}`).value = {formula: `${sr}!E${i}`};
         }
     })
 
@@ -88,6 +89,9 @@ const main = async () => {
     let seq = Promise.resolve();
     files.forEach((file) => {
         if (!file.endsWith('.xlsx')) {
+            return;
+        }
+        if(file !== 'FOAMING LOSS MILLENNIUM -1.2021 0k.xlsx'){
             return;
         }
         seq = seq.then(async () => {
