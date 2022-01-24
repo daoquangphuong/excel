@@ -73,7 +73,7 @@ const processFile = async (filename) => {
         for (let i = block2.start; i < block2.end; i++) {
             //
             worksheet.getCell(`F${i}`).value = {formula: `VALUE(IF(RIGHT(B${i}, 1)="%", RIGHT(B${i}, 3), 0))`}
-            worksheet.getCell(`G${i}`).value = {formula: `+Q${i}*C${i}/100*D${i}/100*E${i}/100`}
+            worksheet.getCell(`G${i}`).value = {formula: `+${c('Q')}${i}*C${i}/100*D${i}/100*E${i}/100`}
             worksheet.getCell(`H${i}`).value = {formula: `IF(F${i}=0, G${i}, F${i}*G${i})`}
         }
         for (let i = block3.start; i < block3.end; i++) {
