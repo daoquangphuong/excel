@@ -72,7 +72,11 @@ const processFile = async (filename) => {
             sheet.getCell(`B${l}`).value = {formula: `${sr}!B${i}`};
             sheet.getCell(`C${l}`).value = {formula: `1*RIGHT(SUMPRODUCT(MID(0&B${l}, LARGE(INDEX(ISNUMBER(--MID(B${l}, ROW(INDIRECT("1:"&LEN(B${l}))), 1)) * ROW(INDIRECT("1:"&LEN(B${l}))), 0), ROW(INDIRECT("1:"&LEN(B${l}))))+1, 1) * 10^ROW(INDIRECT("1:"&LEN(B${l})))/10), 2)`};
             if (i === s.start) {
-                sheet.getCell(`D${l}`).value = {formula: `TEXTJOIN("/",TRUE,B${l}:B${l + s.end - s.start - 1})`};
+                const textJoin = [];
+                for (let j = l; j < l + s.end - s.start; j++) {
+                    textJoin.push(`B${j}`)
+                }
+                sheet.getCell(`D${l}`).value = {formula: textJoin.join(`&"/"&`)};
             }
             sheet.getCell(`E${l}`).value = {formula: `1*RIGHT(LEFT(FORMULATEXT(${sr}!E${i}),FIND("*",FORMULATEXT(${sr}!E${i}))-1),LEN(LEFT(FORMULATEXT(${sr}!E${i}),FIND("*",FORMULATEXT(${sr}!E${i}))-1))-1)`};
             sheet.getCell(`F${l}`).value = {formula: `1*RIGHT(FORMULATEXT(${sr}!E${i}),LEN(FORMULATEXT(${sr}!E${i}))-FIND("*",FORMULATEXT(${sr}!E${i})))`};
