@@ -34,7 +34,7 @@ const processFile = async (filename) => {
             }
             if (block1.is) {
                 if (!block1.start) {
-                    if (row.values[1] == 1) {
+                    if (row.values[1] > 0) {
                         block1.start = rowNumber;
                     }
                 } else if (!block1.end) {
