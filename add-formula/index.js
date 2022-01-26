@@ -120,6 +120,9 @@ const main = async () => {
         })
     })
     await seq;
+    console.log('---------')
+    console.log('OK - DONE')
+    console.log('---------')
 }
 
 main().catch(console.error);
