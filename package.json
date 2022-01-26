@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "add-formula": "node ./add-formula/index.js",
+    "add-kg-min": "node ./add-formula/index.js"
+  },
   "dependencies": {
     "exceljs": "^4.3.0"
   }

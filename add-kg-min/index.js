@@ -6,6 +6,14 @@ const ROOT = path.resolve(__dirname);
 const INPUT_PATH = path.resolve(ROOT, 'input');
 const OUTPUT_PATH = path.resolve(ROOT, 'output');
 
+if(!fs.existsSync(INPUT_PATH)){
+    fs.mkdirSync(INPUT_PATH);
+}
+
+if(!fs.existsSync(OUTPUT_PATH)){
+    fs.mkdirSync(OUTPUT_PATH);
+}
+
 const processFile = async (filename) => {
     const workbook = new Excel.Workbook();
     console.log('reading', filename)
